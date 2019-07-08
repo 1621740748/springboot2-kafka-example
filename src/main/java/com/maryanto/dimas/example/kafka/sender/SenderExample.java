@@ -16,7 +16,7 @@ public class SenderExample {
     private KafkaTemplate template;
 
     public void sendMessage(String message) {
-        ListenableFuture<SendResult<String, String>> future = this.template.send("example", "data di kirim");
+        ListenableFuture<SendResult<String, String>> future = this.template.send("example", message);
         future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onFailure(Throwable throwable) {
@@ -28,6 +28,5 @@ public class SenderExample {
                 log.info("Send message: {}", message);
             }
         });
-
     }
 }
